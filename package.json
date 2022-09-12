@@ -1,0 +1,20 @@
+{
+  "name": "kmcodes-discord-handler",
+  "version": "0.0.1",
+  "description": "discord.js v14 handler",
+  "main": "src/index.ts",
+  "repository": "https://github.com/kmkingman/discord-handler",
+  "author": "Muhammad Rafat Kurkar",
+  "license": "MIT",
+  "dependencies": {
+    "@types/fs-extra": "^9.0.13",
+    "discord-api-types": "^0.37.8",
+    "discord.js": "^14.3.0",
+    "dotenv": "^16.0.2",
+    "fs-extra": "^10.1.0",
+    "ts-node": "^10.9.1"
+  },
+  "scripts": {
+    "start": "ts-node src/index.ts"
+  }
+}
