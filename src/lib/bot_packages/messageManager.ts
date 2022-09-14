@@ -49,7 +49,7 @@ export class MESSAGE_MANAGER {
             }
         })
     };
-    async getMember(key){
+    async getMember(key: string){
         return new Promise<GuildMember>(async(resolve, reject) => {
             if(this.message instanceof Message) {
               let user = await this.message.mentions.members?.first() || 
