@@ -1,4 +1,4 @@
-import { Message, UserContextMenuCommandInteraction, PermissionFlags, ApplicationCommandOptionData, ChatInputCommandInteraction, ModalSubmitInteraction, REST, ApplicationCommandOptionBase, PermissionsBitField, MessageContextMenuCommandInteraction, Routes } from "discord.js"
+import { Message, UserContextMenuCommandInteraction, PermissionFlags, ApplicationCommandOptionData, ChatInputCommandInteraction, ModalSubmitInteraction, REST, ApplicationCommandOptionBase, PermissionsBitField, MessageContextMenuCommandInteraction, Routes, ButtonInteraction } from "discord.js"
 import { MESSAGE_MANAGER } from "../bot_packages/messageManager";
 import { KMCODES } from "../kingman";
 export type general = {
@@ -37,13 +37,18 @@ export type modal = {
 export type message_command = {
     id: string,
     run: (client: KMCODES, interaction: MessageContextMenuCommandInteraction)=> Promise<void>
+};
+export type buttons_type = {
+    id: string,
+    run: (client: KMCODES, interaction: ButtonInteraction)=> Promise<void>
 }
 export interface CommandFilerType { 
     general?: general,
     slachcmd?: slachcmd,
     user_command?: user_command,
     modal?: modal,
-    message_command? :message_command
+    message_command? :message_command,
+    buttons?: buttons_type[]
 }
 export const load = async(client: KMCODES) => {
     let interaction_commands: { name: string; description?: string; type: number; options?: ApplicationCommandOptionData[] | null; default_permission?: string | null; default_member_permissions?: string | null }[] | { name: string; type: any; }[] = [];
@@ -83,6 +88,13 @@ export const load = async(client: KMCODES) => {
                     }
                     if(files.modal){
                         client.collection.modals.set(files.modal.id, files.modal)
+                    };
+                    if(files.buttons && files.buttons.length !== 0){
+                        await Promise.all(
+                            files.buttons.map((button)=> {
+                                return client.collection.buttons.set(button.id, button)
+                            })
+                        )
                     }
                 })
             )
