@@ -48,5 +48,20 @@ export let events = {
                 console.error(e)
             };
         }
+        if (interaction.isButton()) {
+            const button = client.collection.buttons.get(interaction.customId);
+            if (!button) return interaction.reply({
+                embeds: [
+                    new EmbedBuilder()
+                    .setDescription('Something went wrong... Probably the button ID is not defined in the modals handler.')
+                ],
+                ephemeral: true
+            });
+            try {
+                button.run(client, interaction);
+            } catch (e) {
+                console.error(e)
+            };
+        }
     }
 } as EventsTyper
