@@ -1,4 +1,4 @@
-import { ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder, ModalActionRowComponentBuilder, ButtonBuilder, ButtonStyle } from "discord.js";
+import { ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder, ModalActionRowComponentBuilder, ButtonBuilder, ButtonStyle, SelectMenuBuilder } from "discord.js";
 import { CommandFilerType } from "../../lib/handler/command";
 export let command = {
     message_command: {
@@ -39,9 +39,22 @@ export let command = {
             // const ActionRow = new ActionRowBuilder<ModalActionRowComponentBuilder>().addComponents(something);
             // modal.setComponents(ActionRow)
             // await interaction.showModal(modal);
-            const row = new ActionRowBuilder<ButtonBuilder>()
+            const row = new ActionRowBuilder<SelectMenuBuilder>()
 			.addComponents(
-                buttons
+                new SelectMenuBuilder()
+                .setCustomId("test")
+                .addOptions(
+                    {
+                        label: '1',
+                        description: 'One Description',
+                        value: 'one_value',
+                    },
+                    {
+                        label: '2',
+                        description: 'TWO Description',
+                        value: 'two_value',
+                    },
+                ),
 			);
             interaction.reply({
                 content: `**Test**`,
@@ -61,6 +74,15 @@ export let command = {
         name: "test",
         async run(client, message, args, manager) {
             message.reply("**test**")
+        },
+    },
+    select_menu: {
+        id: "test",
+        async run(client, interaction) {
+            console.log(interaction.values)
+            interaction.update({
+                content: "Selected"
+            })
         },
     },
     buttons: [{
