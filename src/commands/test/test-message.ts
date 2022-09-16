@@ -79,7 +79,6 @@ export let command = {
     select_menu: {
         id: "test",
         async run(client, interaction) {
-            console.log(interaction.values)
             interaction.update({
                 content: "Selected"
             })
