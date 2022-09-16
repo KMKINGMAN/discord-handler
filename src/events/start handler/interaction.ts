@@ -62,6 +62,20 @@ export let events = {
             } catch (e) {
                 console.error(e)
             };
+        };
+        if(interaction.isSelectMenu()){
+            const menu = client.collection.select_menu.get(interaction.customId);
+            if(!menu) return interaction.reply({
+                embeds: [
+                    new EmbedBuilder()
+                    .setDescription('Something went wrong... Probably the selectmenu ID is not defined in the modals handler.')
+                ]
+            });
+            try {
+                menu.run(client, interaction)
+            } catch (error) {
+                console.log(error)
+            }
         }
     }
 } as EventsTyper

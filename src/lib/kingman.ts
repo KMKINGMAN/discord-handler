@@ -4,18 +4,21 @@ import { config } from "./utils/config";
 import * as pkg from "./utils/packages";
 import { load as load_handler } from "./handler/command";
 import { load as  load_events } from "./handler/events";
-import * as managers from "./utils/managers"
+import * as managers from "./utils/managers";
+import { console_logger } from "./utils/logger";
 export class KMCODES extends Client {
     public package: typeof pkg;
     public collection: ReturnType<typeof collection>;
     public config: ReturnType<typeof config>;
-    public managers: typeof managers
+    public managers: typeof managers;
+    public logger: ReturnType<typeof console_logger>;
     constructor(ops: ClientOptions){
         super(ops);
         this.package = pkg;
-        this.managers = managers
+        this.managers = managers;
         this.collection = collection();
         this.config = config(this);
+        this.logger = console_logger(this);
         (async()=>{
             await this.load_handlers()
         })();

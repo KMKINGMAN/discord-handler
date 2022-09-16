@@ -1,4 +1,4 @@
-import { Message, UserContextMenuCommandInteraction, PermissionFlags, ApplicationCommandOptionData, ChatInputCommandInteraction, ModalSubmitInteraction, REST, ApplicationCommandOptionBase, PermissionsBitField, MessageContextMenuCommandInteraction, Routes, ButtonInteraction } from "discord.js"
+import { Message, UserContextMenuCommandInteraction, PermissionFlags, ApplicationCommandOptionData, ChatInputCommandInteraction, ModalSubmitInteraction, REST, ApplicationCommandOptionBase, PermissionsBitField, MessageContextMenuCommandInteraction, Routes, ButtonInteraction, SelectMenuInteraction } from "discord.js"
 import { MESSAGE_MANAGER } from "../bot_packages/messageManager";
 import { KMCODES } from "../kingman";
 export type general = {
@@ -42,13 +42,18 @@ export type buttons_type = {
     id: string,
     run: (client: KMCODES, interaction: ButtonInteraction)=> Promise<void>
 }
+export type select_menu_type = {
+    id: string,
+    run: (client: KMCODES, interaction: SelectMenuInteraction)=> Promise<void>
+}
 export interface CommandFilerType { 
     general?: general,
     slachcmd?: slachcmd,
     user_command?: user_command,
     modal?: modal,
     message_command? :message_command,
-    buttons?: buttons_type[]
+    buttons?: buttons_type[],
+    select_menu?: select_menu_type
 }
 export const load = async(client: KMCODES) => {
     let interaction_commands: { name: string; description?: string; type: number; options?: ApplicationCommandOptionData[] | null; default_permission?: string | null; default_member_permissions?: string | null }[] | { name: string; type: any; }[] = [];
@@ -95,6 +100,9 @@ export const load = async(client: KMCODES) => {
                                 return client.collection.buttons.set(button.id, button)
                             })
                         )
+                    };
+                    if(files.select_menu){
+                        client.collection.select_menu.set(files.select_menu.id, files.select_menu)
                     }
                 })
             )
