@@ -92,7 +92,7 @@ export let command = {
     },
 } as CommandFilerType
 ```
-##### slach command template
+##### slash command template
 ```typescript
 import { ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder, ModalActionRowComponentBuilder, ButtonBuilder, ButtonStyle, SelectMenuBuilder } from "discord.js";
 import { CommandFilerType } from "../../lib/handler/command";
