@@ -114,7 +114,7 @@ export const load = async(client: KMCODES) => {
             Routes.applicationCommands(client.config.id),
             { body: interaction_commands }
         );
-        console.log("Loaded All Commands")
+        client.logger.done("All Commands Loaded and Registerd")
     } catch(e) {
         console.log(e)
     }
