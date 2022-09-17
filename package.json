@@ -1,6 +1,6 @@
 {
   "name": "kmcodes-discord-handler",
-  "version": "0.5.0",
+  "version": "1.0.0",
   "description": "discord.js v14 handler",
   "main": "src/index.ts",
   "repository": "https://github.com/kmkingman/discord-handler",
