@@ -170,3 +170,5 @@ You can use them all in one file see `src/commands/test/test-message.ts `
 my telegram channel: https://t.me/kingman4hack
 <br>
 my instagram: https://instagram.com/km.kingman
+<br>
+Don't forget to give me a credits if you use my project
