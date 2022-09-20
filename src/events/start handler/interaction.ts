@@ -9,11 +9,19 @@ export let events = {
             let manager = new client.managers.Message(interaction)
             const command = client.collection.slash_commands.get(interaction.commandName);
             if (!command) return;
-            try {
-                command.run(client, interaction, manager);
-            } catch (e) {
-                console.error(e)
+            if(interaction.member){
+                if(!interaction.guild?.members.cache.get(interaction.member.user.id)?.permissions.has(command.permissions?.me || [])){
+                    return interaction.reply({ embeds: [manager.generateError(`You need \`${command.permissions?.me}\` permissions`)]})
+                }
+            }
+            if(!interaction.guild?.members.cache.get(client.user?.id ?? "")?.permissions.has(command.permissions?.bot || [])){
+                return interaction.reply({ embeds: [manager.generateError(`I need \`${command.permissions?.bot}\` permissions`)]})
             };
+            try {
+                await command.run(client, interaction, manager)
+            } catch (error) {
+                console.error(error)
+            }
         };
         if (interaction.isUserContextMenuCommand()) {
             const command = client.collection.user_commands.get(interaction.commandName);
