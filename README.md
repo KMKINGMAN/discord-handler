@@ -167,6 +167,6 @@ export let command = {
 You can use them all in one file see `src/commands/test/test-message.ts `
 
 # Support
-my discord server: https://discord.gg/kmcodes
 my telegram channel: https://t.me/kingman4hack
+<br>
 my instagram: https://instagram.com/km.kingman
