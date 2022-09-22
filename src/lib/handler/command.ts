@@ -11,7 +11,7 @@ export type general = {
     examples?: Array<string>,
     usage?: Array<string>,
     category? : string,
-    run: (client: KMCODES, message: Message, args: Array<string>, manager?: MESSAGE_MANAGER)=> Promise<void>
+    run: (client: KMCODES, message: Message, args: Array<string>, manager: MESSAGE_MANAGER)=> Promise<void>
 }
 export type slachcmd = {
     name: string,
@@ -24,11 +24,11 @@ export type slachcmd = {
     usage?: Array<string>,
     category? : string,
     options? : Array<ApplicationCommandOptionData>,
-    run: (client: KMCODES, interaction: ChatInputCommandInteraction, manager?: MESSAGE_MANAGER)=> Promise<void>
+    run: (client: KMCODES, interaction: ChatInputCommandInteraction, manager: MESSAGE_MANAGER)=> Promise<void>
 }
 export type user_command = {
     id: string,
-    run: (client: KMCODES, interaction: UserContextMenuCommandInteraction)=> Promise<void>
+    run: (client: KMCODES, interaction: UserContextMenuCommandInteraction, manager: MESSAGE_MANAGER)=> Promise<void>
 }
 export type modal = {
     id: string,
