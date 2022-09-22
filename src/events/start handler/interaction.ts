@@ -27,7 +27,8 @@ export let events = {
             const command = client.collection.user_commands.get(interaction.commandName);
             if (!command) return;
             try {
-                command.run(client, interaction);
+                let manager = new client.managers.Message(interaction)
+                command.run(client, interaction, manager);
             } catch (e) {
                 console.error(e)
             };
