@@ -1,9 +1,9 @@
 import { EmbedBuilder } from "@discordjs/builders";
-import { Channel, ChatInputCommandInteraction, Guild, GuildMember, Message, Role, User } from "discord.js";
+import { Channel, ChatInputCommandInteraction, UserContextMenuCommandInteraction,Guild, GuildMember, Message, Role, User } from "discord.js";
 
 export class MESSAGE_MANAGER {
-    public message: Message | ChatInputCommandInteraction
-    constructor(message: Message | ChatInputCommandInteraction){
+    public message: Message | ChatInputCommandInteraction | UserContextMenuCommandInteraction
+    constructor(message: Message | ChatInputCommandInteraction | UserContextMenuCommandInteraction){
         this.message = message
     };
     generateDone(content: string, title?: string): EmbedBuilder {
